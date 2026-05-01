@@ -55,7 +55,7 @@ export const Atelier = () => {
           variant="primary"
           className="mt-2 md:mt-4 px-8 md:px-10 h-10 md:h-12 text-[8px] md:text-[10px] tracking-widest uppercase border-none rounded-sm transition-opacity hover:opacity-90 bg-[#1A1A1A] text-white"
         >
-          ПОСЕТИТЬ DIAMOND ATELIER
+          Оставить заявку
         </Button>
       </div>
     </section>

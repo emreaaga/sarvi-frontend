@@ -67,10 +67,22 @@ export default function ProductPreview({
         </p>
       </div>
 
-      <div className="flex items-center gap-1 mt-auto pb-1">
+      <div className="flex items-center gap-1 mt-auto pb-1 px-1">
+        <LocalizedClientLink
+          href={`/products/${product.handle}`}
+          className="flex-1"
+        >
+          <Button
+            variant="secondary"
+            className="w-full h-6 md:h-7 text-[7px] md:text-[8px] px-0 tracking-tighter uppercase border-[#E5E5E5]"
+          >
+            подробнее
+          </Button>
+        </LocalizedClientLink>
+
         <Button
           variant="primary"
-          className="flex-1 h-8 md:h-9 text-[8px] md:text-[9px] px-0 tracking-tighter"
+          className="flex-1 h-6 md:h-7 text-[7px] md:text-[8px] px-0 tracking-tighter uppercase"
         >
           купить
         </Button>

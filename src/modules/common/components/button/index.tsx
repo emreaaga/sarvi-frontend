@@ -24,12 +24,9 @@ const Button = ({
     <button
       {...props}
       className={clx(
-        // Базовые стили: увеличили высоту до h-12 для мобильных (touch target)
-        // Шрифт сделали чуть крупнее на мобилках (12px), так как 10px — это на грани читаемости
-        "flex items-center justify-center px-8 h-12 md:h-10 w-full md:w-fit",
+        "flex items-center justify-center px-4 h-12 md:h-10 w-full",
         "uppercase text-[12px] md:text-[10px] font-bold tracking-[0.1em]",
         "border transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed",
-        // Состояния для тача (active)
         "active:scale-[0.98] select-none",
         variants[variant],
         className
@@ -38,7 +35,6 @@ const Button = ({
       {isLoading ? (
         <span className="flex items-center gap-2">
           <span className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
-          Загрузка...
         </span>
       ) : (
         children
