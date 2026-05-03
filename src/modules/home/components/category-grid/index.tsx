@@ -1,5 +1,4 @@
 import { Text } from "@medusajs/ui"
-import InteractiveLink from "@modules/common/components/interactive-link"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Image from "next/image"
 
@@ -46,11 +45,11 @@ const CategoryGrid = () => {
   return (
     <section className="py-10 md:py-20 border-t border-ui-border-base">
       <div className="content-container">
-        <div className="flex justify-between items-center mb-8">
-          <Text className="text-xl md:text-2xl uppercase tracking-[0.2em] font-medium text-[#1a1a1a]">
-            Каталог
+        {/* Хедер в едином стиле с компонентом Brands */}
+        <div className="flex justify-between items-center mb-10">
+          <Text className="text-[12px] md:text-lg uppercase tracking-[0.2em] font-semibold text-[#1a1a1a]">
+            каталог
           </Text>
-          <InteractiveLink href="/store">Посмотреть все</InteractiveLink>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-gray-200">

@@ -2,7 +2,6 @@
 
 import { HttpTypes } from "@medusajs/types"
 import { Text } from "@medusajs/ui"
-import InteractiveLink from "@modules/common/components/interactive-link"
 import ProductPreview from "@modules/products/components/product-preview"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useRef } from "react"
@@ -38,13 +37,13 @@ export default function ProductSlider({
 
   return (
     <div className="flex flex-col w-full">
-      <div className="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+      <div className="flex justify-between items-center mb-8 md:mb-10">
         <Text className="text-[12px] md:text-lg uppercase tracking-[0.2em] font-semibold text-[#1a1a1a] truncate mr-2">
           {title}
         </Text>
 
-        <div className="flex items-center gap-x-2 md:gap-x-4 shrink-0">
-          <div className="flex items-center gap-x-1 md:gap-x-2 border-r border-gray-200 pr-2 md:pr-4">
+        <div className="flex items-center shrink-0">
+          <div className="flex items-center gap-x-1 md:gap-x-2">
             <button
               onClick={() => scroll("left")}
               className="p-1 hover:text-gray-500 transition-colors active:scale-90"
@@ -68,10 +67,6 @@ export default function ProductSlider({
               />
             </button>
           </div>
-
-          <InteractiveLink href={`/collections/${handle}`}>
-            <span className="text-[10px] md:text-sm">Все</span>
-          </InteractiveLink>
         </div>
       </div>
 

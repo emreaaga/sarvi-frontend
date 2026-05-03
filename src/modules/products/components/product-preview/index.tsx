@@ -15,7 +15,6 @@ export default function ProductPreview({
 
   return (
     <div className="flex flex-col group w-full h-full bg-white">
-      {/* Изображение */}
       <div className="relative w-full aspect-[4/5] bg-[#F9F9F9] overflow-hidden mb-3">
         <LocalizedClientLink href={`/products/${product.handle}`}>
           {product.thumbnail && (

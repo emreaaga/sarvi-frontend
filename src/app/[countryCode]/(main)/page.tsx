@@ -4,6 +4,7 @@ import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 import About from "@modules/home/components/about"
 import Atelier from "@modules/home/components/atelier"
+import Brands from "@modules/home/components/brands"
 import CategoryGrid from "@modules/home/components/category-grid"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
@@ -41,7 +42,7 @@ export default async function Home(props: {
           <FeaturedProducts collections={collections} region={region} />
         </ul>
       </div>
-      {/*<Brands />*/}
+      <Brands />
       <About />
       <Atelier />
       <Visit />
