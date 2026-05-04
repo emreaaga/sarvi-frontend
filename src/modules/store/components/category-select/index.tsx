@@ -33,7 +33,6 @@ const CategorySelect = ({ categories }: { categories: any[] }) => {
         ))}
       </select>
 
-      {/* Кастомная стрелочка, так как стандартную мы скрыли через appearance-none */}
       <ChevronDown
         size={12}
         strokeWidth={2}

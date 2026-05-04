@@ -3,23 +3,36 @@ import { Suspense } from "react"
 import FilterBar from "../components/filter-bar"
 import PaginatedProducts from "./paginated-products"
 
-const StoreTemplate = async ({ sortBy, page, countryCode }: any) => {
+const StoreTemplate = async ({
+  sortBy,
+  page,
+  countryCode,
+  typeId,
+  disabledTypeSelect,
+}: any) => {
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
 
   return (
     <div className="flex flex-col content-container">
-      <FilterBar sort={sort} />
+      <FilterBar
+        sort={sort}
+        typeId={typeId}
+        disabledTypeSelect={disabledTypeSelect}
+      />
+
       <div className="w-full mt-4">
         <Suspense fallback={<SkeletonProductGrid />}>
           <PaginatedProducts
             sortBy={sort}
             page={pageNumber}
             countryCode={countryCode}
+            typeId={typeId}
           />
         </Suspense>
       </div>
     </div>
   )
 }
+
 export default StoreTemplate

@@ -4,12 +4,13 @@ import ProductPreview from "@modules/products/components/product-preview"
 import { Pagination } from "@modules/store/components/pagination"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
-const PRODUCT_LIMIT = 12
+const PRODUCT_LIMIT = 15
 
 type PaginatedProductsParams = {
   limit: number
   collection_id?: string[]
   category_id?: string[]
+  type_id?: string[]
   id?: string[]
   order?: string
 }
@@ -19,6 +20,7 @@ export default async function PaginatedProducts({
   page,
   collectionId,
   categoryId,
+  typeId,
   productsIds,
   countryCode,
 }: {
@@ -26,11 +28,12 @@ export default async function PaginatedProducts({
   page: number
   collectionId?: string
   categoryId?: string
+  typeId?: string
   productsIds?: string[]
   countryCode: string
 }) {
   const queryParams: PaginatedProductsParams = {
-    limit: 12,
+    limit: 15,
   }
 
   if (collectionId) {
@@ -47,6 +50,10 @@ export default async function PaginatedProducts({
 
   if (sortBy === "created_at") {
     queryParams["order"] = "created_at"
+  }
+
+  if (typeId) {
+    queryParams["type_id"] = [typeId]
   }
 
   const region = await getRegion(countryCode)
@@ -69,7 +76,7 @@ export default async function PaginatedProducts({
   return (
     <>
       <ul
-        className="grid grid-cols-2 w-full small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8"
+        className="grid grid-cols-2 w-full small:grid-cols-3 medium:grid-cols-5 gap-x-6 gap-y-8"
         data-testid="products-list"
       >
         {products.map((p) => {
