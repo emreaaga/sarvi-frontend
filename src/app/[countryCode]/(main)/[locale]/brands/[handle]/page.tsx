@@ -94,7 +94,7 @@ export default async function BrandPage(props: {
             page={page}
             countryCode={countryCode}
             typeId={typeId}
-            disabledTypeSelect={true}
+            hideFilterBar={true} // <-- Даем команду скрыть панель фильтров
           />
         ) : (
           <div className="content-container flex flex-col items-center justify-center py-24">

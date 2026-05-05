@@ -49,7 +49,6 @@ const FilterBar = async ({
         )}
       </div>
 
-      {/* Правая часть: Поиск и Сортировка */}
       <div className="flex items-center gap-x-8 mt-6 md:mt-0">
         <button className="flex items-center gap-x-2 text-gray-400 hover:text-black transition-colors uppercase text-[10px] tracking-widest">
           <span>Поиск</span>

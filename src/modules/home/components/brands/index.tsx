@@ -2,6 +2,17 @@ import { Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Image from "next/image"
 
+async function getDictionary(locale: string) {
+  const code = locale || "ru-RU"
+  try {
+    const dict = await import(`../../../../lib/constants/${code}.json`)
+    return dict.default
+  } catch {
+    const fallback = await import(`../../../../lib/constants/ru-RU.json`)
+    return fallback.default
+  }
+}
+
 export const BRANDS_DATA = [
   { name: "Aesthein", src: "/images/brands/aesthein.png", handle: "aesthein" },
   { name: "antala", src: "/images/brands/antala.png", handle: "antala" },
@@ -13,14 +24,15 @@ export const BRANDS_DATA = [
   },
 ]
 
-// ... ваш импорт
-const Brands = () => {
+const Brands = async ({ locale }: { locale: string }) => {
+  const dict = await getDictionary(locale)
+
   return (
     <section className="w-full bg-[#FFFDF8] font-sans py-20">
       <div className="content-container px-4 md:px-10">
         <div className="flex justify-between items-center mb-10">
           <Text className="text-[12px] md:text-lg uppercase tracking-[0.2em] font-semibold text-[#1a1a1a]">
-            бренды
+            {dict.nav?.brands}
           </Text>
         </div>
 
@@ -28,10 +40,9 @@ const Brands = () => {
           {BRANDS_DATA.map((brand, idx) => (
             <LocalizedClientLink
               key={idx}
-              href={`/brands/${brand.handle}`} // Обновленная ссылка
+              href={`/brands/${brand.handle}`}
               className="group relative aspect-[3/4] w-full overflow-hidden"
             >
-              {/* Остальной код карточки остается без изменений */}
               <Image
                 src={brand.src}
                 alt={brand.name}
@@ -52,4 +63,5 @@ const Brands = () => {
     </section>
   )
 }
+
 export default Brands

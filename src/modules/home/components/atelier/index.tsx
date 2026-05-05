@@ -1,7 +1,20 @@
 import Button from "@modules/common/components/button"
 import Image from "next/image"
 
-export const Atelier = () => {
+async function getDictionary(locale: string) {
+  const code = locale || "ru-RU"
+  try {
+    const dict = await import(`../../../../lib/constants/${code}.json`)
+    return dict.default
+  } catch {
+    const fallback = await import(`../../../../lib/constants/ru-RU.json`)
+    return fallback.default
+  }
+}
+
+export const Atelier = async ({ locale }: { locale: string }) => {
+  const dict = await getDictionary(locale)
+
   return (
     <section className="bg-[#F7F7F7] w-full min-h-[650px] md:min-h-[800px] xl:min-h-[1100px] flex items-center justify-center relative overflow-hidden font-sans py-12 md:py-20">
       <div className="absolute top-[5%] left-[2%] md:top-[8%] md:left-[4%] w-[130px] h-[190px] md:w-[350px] md:h-[580px] opacity-80 md:opacity-100 transition-transform duration-1000 hover:scale-105 z-10">
@@ -46,16 +59,14 @@ export const Atelier = () => {
         </h2>
 
         <p className="text-[10px] md:text-[13px] leading-[1.5] text-[#333333] max-w-[280px] md:max-w-[420px]">
-          Для самых искушенных ценителей мы предоставляем услугу{" "}
-          <br className="hidden md:block" />
-          Diamond Atelier — создадим украшение по вашему дизайну.
+          {dict.atelier?.description}
         </p>
 
         <Button
           variant="primary"
           className="mt-2 md:mt-4 px-8 md:px-10 h-10 md:h-12 text-[8px] md:text-[10px] tracking-widest uppercase border-none rounded-sm transition-opacity hover:opacity-90 bg-[#1A1A1A] text-white"
         >
-          Оставить заявку
+          {dict.atelier?.button}
         </Button>
       </div>
     </section>

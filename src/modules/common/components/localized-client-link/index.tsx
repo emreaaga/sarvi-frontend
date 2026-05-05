@@ -5,8 +5,8 @@ import { useParams } from "next/navigation"
 import React from "react"
 
 /**
- * Use this component to create a Next.js `<Link />` that persists the current country code in the url,
- * without having to explicitly pass it as a prop.
+ * Этот компонент автоматически добавляет код страны И код языка в URL,
+ * чтобы пользователю не приходилось вручную прописывать их в каждой ссылке.
  */
 const LocalizedClientLink = ({
   children,
@@ -20,10 +20,14 @@ const LocalizedClientLink = ({
   passHref?: true
   [x: string]: any
 }) => {
-  const { countryCode } = useParams()
+  const { countryCode, locale } = useParams()
+
+  const localizedHref = `/${countryCode}/${locale}${
+    href.startsWith("/") ? "" : "/"
+  }${href}`
 
   return (
-    <Link href={`/${countryCode}${href}`} {...props}>
+    <Link href={localizedHref} {...props}>
       {children}
     </Link>
   )

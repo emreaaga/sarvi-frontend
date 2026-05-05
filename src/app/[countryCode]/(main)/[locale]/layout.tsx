@@ -16,21 +16,28 @@ export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
 }
 
-export default async function PageLayout(props: { children: React.ReactNode }) {
+export default async function PageLayout(props: {
+  children: React.ReactNode
+  params: { countryCode: string; locale: string }
+}) {
   const customer = await retrieveCustomer()
   const cart = await retrieveCart()
   let shippingOptions: StoreCartShippingOption[] = []
 
+  // В новых версиях Next.js параметры извлекаются так:
+  const { countryCode, locale } = props.params
+
   if (cart) {
     const { shipping_options } = await listCartOptions()
-
     shippingOptions = shipping_options
   }
 
   return (
     <>
       <Toaster />
-      <Nav />
+      {/* Прокидываем params в Nav */}
+      <Nav params={{ countryCode, locale }} />
+
       {customer && cart && (
         <CartMismatchBanner customer={customer} cart={cart} />
       )}
@@ -44,9 +51,12 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
           shippingOptions={shippingOptions}
         />
       )}
+
       {props.children}
+
       <CallbackContact />
-      <Footer />
+
+      <Footer locale={locale} />
     </>
   )
 }

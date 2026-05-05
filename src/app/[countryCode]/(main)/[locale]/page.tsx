@@ -11,17 +11,32 @@ import Hero from "@modules/home/components/hero"
 import Service from "@modules/home/components/service"
 import Visit from "@modules/home/components/visit"
 
-export const metadata: Metadata = {
-  title: "Sarvi | Эксклюзивная парфюмерия",
-  description: "Ваш эксклюзивный гид в мире парфюмерии и стиля в Узбекистане.",
+// 1. Для локализации заголовка вкладки лучше использовать generateMetadata
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string }
+}): Promise<Metadata> {
+  const { locale } = await params
+
+  const isRu = locale === "ru-RU"
+
+  return {
+    title: isRu
+      ? "Sarvi | Эксклюзивная косметика"
+      : "Sarvi | Ekskluziv kosmetika",
+    description: isRu
+      ? "Ваш эксклюзивный гид в мире премиальной косметики в Узбекистане."
+      : "O'zbekistondagi premium kosmetika dunyosidagi ekskluziv yo'lboshchingiz.",
+  }
 }
 
 export default async function Home(props: {
-  params: Promise<{ countryCode: string }>
+  params: Promise<{ countryCode: string; locale: string }>
 }) {
   const params = await props.params
 
-  const { countryCode } = params
+  const { countryCode, locale } = params
 
   const region = await getRegion(countryCode)
 
@@ -35,18 +50,20 @@ export default async function Home(props: {
 
   return (
     <>
-      <Hero />
-      <CategoryGrid />
+      <Hero locale={locale} />
+
+      <CategoryGrid locale={locale} />
       <div className="py-2">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
         </ul>
       </div>
-      <Brands />
-      <About />
-      <Atelier />
-      <Visit />
-      <Service />
+      <Brands locale={locale} />
+
+      <About locale={locale} />
+      <Atelier locale={locale} />
+      <Visit locale={locale} />
+      <Service locale={locale} />
     </>
   )
 }

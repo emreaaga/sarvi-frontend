@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "promo": "1 mln so'mdan yuqori bepul yetkazib berish",
+    "catalog": "katalog +",
+    "brands": "brendlar",
+    "about": "biz haqimizda",
+    "customers": "mijozlar uchun",
+    "contacts": "aloqa",
+    "cart": "savat",
+    "wishlist": "sevimlilar"
+  },
+  "hero": {
+    "description": "premium k-beauty dunyosidagi yo'lboshchingiz. original koreya kosmetikasini to'g'ridan-to'g'ri yetkazib berish: mavjud va buyurtma asosida.",
+    "button": "katalogni ko'rish"
+  },
+  "categories": {
+    "title": "katalog",
+    "spf": "spf",
+    "penka": "penka",
+    "toner": "toner",
+    "serum": "zardob",
+    "mist": "mist",
+    "sarvi": "sarvi haqida",
+    "all_products": "barcha mahsulotlar",
+    "new": "yangiliklar",
+    "cream": "krem",
+    "sale": "chegirmalar"
+  },
+  "about": {
+    "title": "— bu ilg'or go'zallik texnologiyalari va selektiv yondashuvning sinergiyasi bo'lib, Janubiy Koreyaning eng yaxshi kosmetika brendlari to'plamida mujassamlangan.",
+    "p1": "Sarvi Cosmetics — innovatsiyalar dunyosidagi shaxsiy yo'lboshchingiz. Biz eng samarali liniyalarni ekspert auditi va tanlashni o'z zimmamizga olamiz, sizga haqiqiy sifat va premium servisni kafolatlaymiz.",
+    "p2": "Bizning yopiq brendlar portfelimiz qat'iy mezonlar asosida shakllantiriladi: tarkibning tozaligidan tortib isbotlangan klinik natijalargacha. Biz dunyo bestsellerlari va nish mahsulotlariga yo'l ochib beramiz, bu esa sizga mukammal parvarishni eng estetik va tasdiqlangan usulda topish imkonini beradi."
+  },
+  "atelier": {
+    "description": "Eng talabchan bilimdonlar uchun biz Diamond Atelier xizmatini taqdim etamiz — sizning dizayningiz bo'yicha zargarlik buyumlarini yaratamiz.",
+    "button": "Ariza qoldirish"
+  },
+  "visit": {
+    "title": "TASHRIFNI REJALASHTIRISH",
+    "description": "Sarvi Cosmetics — bu benuqson xizmat va sizga bo'lgan g'amxo'rkik maskanidir. Koreya estetikasi dunyosi bilan tanishuvingiz imkon qadar qulay bo'lishi uchun biz har bir detalni o'ylab chiqdik.",
+    "button": "ARIZA QOLDIRISH"
+  },
+  "service": {
+    "subtitle": "Sizga bo'lgan g'amxo'rlik bilan",
+    "title": "SARVI BEQIYOS XIZMATNI <br/> TAQDIM ETADI",
+    "details": "batafsil",
+    "items": {
+      "original": {
+        "title": "100% Original",
+        "description": "Biz har bir flakonning haqiqiyligini kafolatlaymiz. Faqat rasmiy brendlardan to'g'ridan-to'g'ri yetkazib berish."
+      },
+      "delivery": {
+        "title": "Tez yetkazib berish",
+        "description": "Toshkent bo'ylab va O'zbekistonning barcha viloyatlariga qisqa vaqt ichida tezkor yetkazib berish."
+      },
+      "packaging": {
+        "title": "Premium qadoqlash",
+        "description": "Har bir buyurtma bizning brend lyuks qadog'imizda tayyorlanadi — sovg'a uchun tayyor yechim."
+      },
+      "audit": {
+        "title": "Ekspert auditi",
+        "description": "Koreya kosmetikasi va nish parfyumeriyasining eng yaxshi liniyalarini sinchkovlik bilan tanlash."
+      }
+    }
+  },
+  "footer": {
+    "description": "O'zbekistondagi premium kosmetika va uslub dunyosidagi ekskluziv yo'lboshchingiz.",
+    "payment_methods": "To'lov usullari:",
+    "address_1_title": "1-sonli shou-rum manzili:",
+    "address_1_body": "Toshkent, Katta Polyanka ko'chasi, 44, Spasonalivkovskiy ko'chasi tomondan kirish.",
+    "address_1_metro": "Yaqin metrolar: Oktyabrskaya, Polyanka, Dobrininskaya",
+    "address_2_title": "2-sonli shou-rum manzili:",
+    "address_2_body": "Toshkent, Smolnaya ko'chasi, 12-uy, «Almazniy Mir» БЦ, 2-qavat, 24В-xona",
+    "address_2_metro": "Yaqin metro: Vodniy Stadion",
+    "rights": "© 2026 «*****» AJ, STIR 7321409898. Barcha huquqlar himoyalangan.",
+    "copy_warning": "Materiallardan mualliflik huquqi egasining ruxsatisiz nusxa ko'chirish taqiqlanadi.",
+    "privacy": "Maxfiylik siyosati",
+    "dev": "Sayt ishlab chiqilishi"
+  },
+  "about_page": {
+    "meta_title": "Biz haqimizda | Sarvi Cosmetics",
+    "meta_description": "Sarvi Cosmetics jamoasi — eng noyob va orzu qilingan koreys kosmetikasi bo'yicha sizning yo'lboshchingiz.",
+    "header": "biz haqimizda",
+    "greeting": "salom! 🤍",
+    "p1": "sarvi cosmetics jamoasi aloqada — barcha izlayotgan eng orzu qilingan va noyob koreys kosmetikasi bo'yicha sizning yo'lboshchingiz.",
+    "p2": "siz uchun eng zamonaviy kosmetikaning ulkan assortimenti mavjud!",
+    "p3": "sizning istaklar ro'yxatingizni (wish list) qanchalik uzun bo'lishidan qat'i nazar, haqiqatga aylantirishga tayyormiz!",
+    "banner": "sarvi cosmetics — sizning shaxsiy go'zallik-konsyerjingiz"
+  },
+  "store": {
+    "meta_title": "Katalog | SARVI Cosmetics",
+    "meta_description": "Bizning selektiv kosmetika va nish parfyumeriya to'plamimizni o'rganing.",
+    "title": "Barcha mahsulotlar"
+  }
+}

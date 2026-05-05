@@ -9,17 +9,22 @@ const StoreTemplate = async ({
   countryCode,
   typeId,
   disabledTypeSelect,
+  hideFilterBar, // <-- Добавили новый проп
 }: any) => {
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
 
   return (
     <div className="flex flex-col content-container">
-      <FilterBar
-        sort={sort}
-        typeId={typeId}
-        disabledTypeSelect={disabledTypeSelect}
-      />
+      {!hideFilterBar ? (
+        <FilterBar
+          sort={sort}
+          typeId={typeId}
+          disabledTypeSelect={disabledTypeSelect}
+        />
+      ) : (
+        <div className="w-full border-b border-gray-100 mb-8 mt-2" />
+      )}
 
       <div className="w-full mt-4">
         <Suspense fallback={<SkeletonProductGrid />}>

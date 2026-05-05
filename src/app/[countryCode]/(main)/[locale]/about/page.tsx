@@ -1,13 +1,37 @@
 import { Metadata } from "next"
 import Image from "next/image"
 
-export const metadata: Metadata = {
-  title: "О нас | Sarvi Cosmetics",
-  description:
-    "Команда Sarvi Cosmetics — твой гид по самой желанной и редкой корейской косметике.",
+async function getDictionary(locale: string) {
+  const code = locale || "ru-RU"
+  try {
+    const dict = await import(`../../../../..//lib/constants/${code}.json`)
+    return dict.default
+  } catch {
+    const fallback = await import(`../../../../..//lib/constants/ru-RU.json`)
+    return fallback.default
+  }
 }
 
-export default function AboutPage() {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const dict = await getDictionary(locale)
+
+  return {
+    title: dict.about_page?.meta_title,
+    description: dict.about_page?.meta_description,
+  }
+}
+
+export default async function AboutPage(props: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await props.params
+  const dict = await getDictionary(locale)
+
   return (
     <main className="w-full bg-white font-sans">
       <section className="grid grid-cols-1 md:grid-cols-3 w-full">
@@ -44,29 +68,21 @@ export default function AboutPage() {
       </section>
 
       <section className="max-w-[1440px] mx-auto px-10 py-[30px] grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Левая часть: заголовок */}
         <div className="col-span-1">
           <h2 className="text-[11px] tracking-[0.2em] uppercase text-[#222] font-normal">
-            о нас
+            {dict.about_page?.header}
           </h2>
         </div>
 
-        {/* Правая часть: основной текст */}
         <div className="col-span-1 max-w-[550px]">
-          <p className="text-[11px] text-[#888] mb-8 lowercase">привет! 🤍</p>
+          <p className="text-[11px] text-[#888] mb-8 lowercase">
+            {dict.about_page?.greeting}
+          </p>
 
           <div className="text-[11px] leading-[2.2] tracking-[0.03em] text-[#333] space-y-6 font-light uppercase">
-            <p>
-              на связи команда sarvi cosmetics — твой гид по самой желанной и
-              редкой корейской косметике, которую ищут все.
-            </p>
-            <p>
-              для вас, огромный ассортимент самой модной косметики в наличии!
-            </p>
-            <p>
-              готовы воплотить твой wish list желанных позиций в реальность
-              каким бы длинным он не был!
-            </p>
+            <p>{dict.about_page?.p1}</p>
+            <p>{dict.about_page?.p2}</p>
+            <p>{dict.about_page?.p3}</p>
           </div>
         </div>
       </section>
@@ -82,7 +98,7 @@ export default function AboutPage() {
 
         <div className="absolute top-12 right-12 text-right px-4">
           <p className="text-[13px] tracking-[0.15em] text-white/80 uppercase font-light">
-            sarvi cosmetics — твой личный бьюти-консьерж
+            {dict.about_page?.banner}
           </p>
         </div>
       </section>

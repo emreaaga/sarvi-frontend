@@ -1,49 +1,58 @@
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Gift, Package, ShieldCheck, Truck } from "lucide-react"
 
-const SERVICES = [
-  {
-    title: "100% Оригинал",
-    description:
-      "Мы гарантируем подлинность каждого флакона. Только прямые поставки от официальных брендов.",
-    icon: <ShieldCheck size={32} strokeWidth={1} />,
-  },
-  {
-    title: "Быстрая доставка",
-    description:
-      "Оперативная доставка по Ташкенту и во все регионы Узбекистана в кратчайшие сроки.",
-    icon: <Truck size={32} strokeWidth={1} />,
-  },
-  {
-    title: "Премиум упаковка",
-    description:
-      "Каждый заказ оформляется в нашу фирменную люксовую упаковку — готовое решение для подарка.",
-    icon: <Gift size={32} strokeWidth={1} />,
-  },
-  {
-    title: "Экспертный аудит",
-    description:
-      "Тщательный отбор лучших линеек корейской косметики и нишевой парфюмерии.",
-    icon: <Package size={32} strokeWidth={1} />,
-  },
-]
+async function getDictionary(locale: string) {
+  const code = locale || "ru-RU"
+  try {
+    const dict = await import(`../../../../lib/constants/${code}.json`)
+    return dict.default
+  } catch {
+    const fallback = await import(`../../../../lib/constants/ru-RU.json`)
+    return fallback.default
+  }
+}
 
-export const Service = () => {
+export const Service = async ({ locale }: { locale: string }) => {
+  const dict = await getDictionary(locale)
+
+  const SERVICES_DATA = [
+    {
+      title: dict.service?.items?.original?.title,
+      description: dict.service?.items?.original?.description,
+      icon: <ShieldCheck size={32} strokeWidth={1} />,
+    },
+    {
+      title: dict.service?.items?.delivery?.title,
+      description: dict.service?.items?.delivery?.description,
+      icon: <Truck size={32} strokeWidth={1} />,
+    },
+    {
+      title: dict.service?.items?.packaging?.title,
+      description: dict.service?.items?.packaging?.description,
+      icon: <Gift size={32} strokeWidth={1} />,
+    },
+    {
+      title: dict.service?.items?.audit?.title,
+      description: dict.service?.items?.audit?.description,
+      icon: <Package size={32} strokeWidth={1} />,
+    },
+  ]
+
   return (
     <section className="bg-[#F9F9F9] w-full py-12 md:py-20 font-sans">
       <div className="content-container">
         <div className="flex flex-col items-center text-center mb-10 md:mb-16">
           <span className="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-[#A0A0A0] uppercase font-normal mb-4 md:mb-5">
-            С заботой о вас
+            {dict.service?.subtitle}
           </span>
-          <h2 className="text-[22px] md:text-[30px] font-medium leading-[1.2] md:leading-[1.1] tracking-tight uppercase text-black max-w-[850px]">
-            SARVI ПРЕДОСТАВЛЯЕТ <br className="hidden md:block" />{" "}
-            НЕПРЕВЗОЙДЕННЫЙ СЕРВИС
-          </h2>
+          <h2
+            className="text-[22px] md:text-[30px] font-medium leading-[1.2] md:leading-[1.1] tracking-tight uppercase text-black max-w-[850px]"
+            dangerouslySetInnerHTML={{ __html: dict.service?.title }}
+          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 md:gap-x-12 gap-y-12 md:gap-y-20">
-          {SERVICES.map((service, idx) => (
+          {SERVICES_DATA.map((service, idx) => (
             <div
               key={idx}
               className="flex flex-col items-center text-center group h-full"
@@ -62,10 +71,10 @@ export const Service = () => {
 
               <div className="mt-auto">
                 <LocalizedClientLink
-                  href="/"
+                  href="/store"
                   className="text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase text-black border-b border-black pb-0.5 hover:opacity-50 transition-all"
                 >
-                  подробнее
+                  {dict.service?.details}
                 </LocalizedClientLink>
               </div>
             </div>
