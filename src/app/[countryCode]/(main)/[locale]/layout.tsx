@@ -24,7 +24,6 @@ export default async function PageLayout(props: {
   const cart = await retrieveCart()
   let shippingOptions: StoreCartShippingOption[] = []
 
-  // В новых версиях Next.js параметры извлекаются так:
   const { countryCode, locale } = props.params
 
   if (cart) {
@@ -35,7 +34,6 @@ export default async function PageLayout(props: {
   return (
     <>
       <Toaster />
-      {/* Прокидываем params в Nav */}
       <Nav params={{ countryCode, locale }} />
 
       {customer && cart && (
