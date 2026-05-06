@@ -37,22 +37,18 @@ export default async function BrandPage(props: {
   const { countryCode, handle } = params
   const { sortBy, page } = searchParams
 
-  // 1. Загружаем типы продуктов
   const types = await listProductTypes().catch(() => [])
 
-  // 2. Ищем бренд по handle
   const currentBrand = types.find(
     (t) => t.value.toLowerCase().replace(/\s+/g, "-") === handle
   )
 
   const typeId = currentBrand?.id
 
-  // Если такого бренда нет в базе вообще — страница пустая
   if (!typeId) {
     return null
   }
 
-  // 3. Проверяем количество товаров
   const {
     response: { count },
   } = await listProducts({
