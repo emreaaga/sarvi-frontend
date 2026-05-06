@@ -41,7 +41,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = async ({
       >
         <div className="flex flex-col small:sticky small:top-48 small:py-0 small:max-w-[300px] w-full py-8 gap-y-6">
           <ProductInfo product={product} />
-          <ProductTabs product={product} />
+          <ProductTabs product={product} dict={dict.product_tabs} />
         </div>
         <div className="block w-full relative">
           <ImageGallery images={images} />
@@ -53,10 +53,15 @@ const ProductTemplate: React.FC<ProductTemplateProps> = async ({
                 disabled={true}
                 product={product}
                 region={region}
+                dict={dict.product_actions}
               />
             }
           >
-            <ProductActionsWrapper id={product.id} region={region} />
+            <ProductActionsWrapper
+              id={product.id}
+              region={region}
+              dict={dict.product_actions}
+            />
           </Suspense>
         </div>
       </div>

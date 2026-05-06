@@ -78,6 +78,26 @@
     "total": "итого",
     "checkout": "оформить заказ"
   },
+  "product_actions": {
+    "select_variant": "Выберите вариант",
+    "select_options": "Выбрать опции",
+    "out_of_stock": "Нет в наличии",
+    "add_to_cart": "Добавить в корзину"
+  },
+  "product_tabs": {
+    "specs_tab": "характеристики",
+    "shipping_tab": "доставка и возврат",
+    "material": "материал",
+    "country": "страна",
+    "weight": "вес",
+    "dimensions": "размеры",
+    "fast_delivery": "быстрая доставка",
+    "fast_delivery_desc": "3-5 рабочих дней до двери или в пункт выдачи.",
+    "easy_exchange": "простой обмен",
+    "easy_exchange_desc": "не подошел товар? обменяем на новый без лишних хлопот.",
+    "easy_return": "легкий возврат",
+    "easy_return_desc": "вернем деньги, если средство вам не подошло."
+  },
   "related": {
     "subtitle": "вам может понравиться",
     "title": "рекомендуем обратить внимание на эти позиции"

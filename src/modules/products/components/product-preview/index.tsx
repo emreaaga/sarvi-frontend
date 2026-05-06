@@ -1,8 +1,13 @@
+"use client" // Обязательно добавляем, так как теперь есть интерактивность
+
+import { addToCart } from "@lib/data/cart"
 import { getProductPrice } from "@lib/util/get-product-price"
 import { HttpTypes } from "@medusajs/types"
 import Button from "@modules/common/components/button"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Image from "next/image"
+import { useParams } from "next/navigation"
+import { useState } from "react"
 
 export default function ProductPreview({
   product,
@@ -14,6 +19,27 @@ export default function ProductPreview({
   dict: any
 }) {
   const { cheapestPrice } = getProductPrice({ product })
+
+  // Добавляем состояние загрузки и получаем код страны для корзины
+  const [isAdding, setIsAdding] = useState(false)
+  const countryCode = useParams().countryCode as string
+
+  const handleAddToCart = async () => {
+    // Берем ID первого доступного варианта
+    const variantId = product.variants?.[0]?.id
+    if (!variantId) return
+
+    setIsAdding(true)
+
+    // Добавляем в корзину
+    await addToCart({
+      variantId,
+      quantity: 1,
+      countryCode,
+    })
+
+    setIsAdding(false)
+  }
 
   return (
     <div className="flex flex-col group w-full h-full bg-white">
@@ -81,8 +107,12 @@ export default function ProductPreview({
           </Button>
         </LocalizedClientLink>
 
+        {/* Заменили на обычную кнопку с обработчиком onClick */}
         <Button
           variant="primary"
+          onClick={handleAddToCart}
+          isLoading={isAdding} // Кнопка покажет спиннер при добавлении
+          disabled={isAdding || !product.variants?.length} // Отключаем, если нет вариантов
           className="flex-1 h-6 md:h-7 text-[7px] md:text-[8px] px-0 tracking-tighter uppercase"
         >
           {dict.buy}

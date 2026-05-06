@@ -49,6 +49,26 @@
     "description": "premium k-beauty dunyosidagi yo'lboshchingiz. original koreya kosmetikasini to'g'ridan-to'g'ri yetkazib berish: mavjud va buyurtma asosida.",
     "button": "katalogni ko'rish"
   },
+  "product_actions": {
+    "select_variant": "Variantni tanlang",
+    "select_options": "Variantlarni tanlash",
+    "out_of_stock": "Sotuvda yo'q",
+    "add_to_cart": "Korzinaga qo'shish"
+  },
+  "product_tabs": {
+    "specs_tab": "xususiyatlari",
+    "shipping_tab": "yetkazib berish va qaytarish",
+    "material": "material",
+    "country": "mamlakat",
+    "weight": "vazni",
+    "dimensions": "o'lchamlari",
+    "fast_delivery": "tezkor yetkazib berish",
+    "fast_delivery_desc": "3-5 ish kuni ichida eshikgacha yoki tarqatish punktigacha.",
+    "easy_exchange": "oson almashtirish",
+    "easy_exchange_desc": "mahsulot mos kelmadimi? ortiqcha tashvishlarsiz yangisiga almashtiramiz.",
+    "easy_return": "oson qaytarish",
+    "easy_return_desc": "agar vosita sizga mos kelmasa, pulingizni qaytaramiz."
+  },
   "order_confirmed": {
     "title": "Buyurtma tasdiqlandi",
     "description": "Xaridingiz muvaffaqiyatli yakunlandi",

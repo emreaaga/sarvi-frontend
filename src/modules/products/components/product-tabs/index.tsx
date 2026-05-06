@@ -9,17 +9,18 @@ import Accordion from "./accordion"
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
+  dict: any
 }
 
-const ProductTabs = ({ product }: ProductTabsProps) => {
+const ProductTabs = ({ product, dict }: ProductTabsProps) => {
   const tabs = [
     {
-      label: "характеристики",
-      component: <ProductInfoTab product={product} />,
+      label: dict.specs_tab,
+      component: <ProductInfoTab product={product} dict={dict} />,
     },
     {
-      label: "доставка и возврат",
-      component: <ShippingInfoTab />,
+      label: dict.shipping_tab,
+      component: <ShippingInfoTab dict={dict} />,
     },
   ]
 
@@ -42,20 +43,20 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   )
 }
 
-const ProductInfoTab = ({ product }: ProductTabsProps) => {
+const ProductInfoTab = ({ product, dict }: ProductTabsProps) => {
   return (
     <div className="text-[11px] py-6 leading-relaxed text-[#666]">
       <div className="grid grid-cols-2 gap-x-8 gap-y-4">
         <div className="flex flex-col gap-y-4">
           <div>
             <span className="font-bold text-black uppercase block mb-1">
-              Материал
+              {dict.material}
             </span>
             <p>{product.material ? product.material : "-"}</p>
           </div>
           <div>
             <span className="font-bold text-black uppercase block mb-1">
-              Страна
+              {dict.country}
             </span>
             <p>{product.origin_country ? product.origin_country : "-"}</p>
           </div>
@@ -63,13 +64,13 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
         <div className="flex flex-col gap-y-4">
           <div>
             <span className="font-bold text-black uppercase block mb-1">
-              Вес
+              {dict.weight}
             </span>
             <p>{product.weight ? `${product.weight} г` : "-"}</p>
           </div>
           <div>
             <span className="font-bold text-black uppercase block mb-1">
-              Размеры
+              {dict.dimensions}
             </span>
             <p>
               {product.length && product.width && product.height
@@ -83,7 +84,7 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
   )
 }
 
-const ShippingInfoTab = () => {
+const ShippingInfoTab = ({ dict }: { dict: any }) => {
   return (
     <div className="text-[11px] py-6 leading-relaxed text-[#666]">
       <div className="grid grid-cols-1 gap-y-6">
@@ -91,27 +92,27 @@ const ShippingInfoTab = () => {
           <FastDelivery size={16} />
           <div>
             <span className="font-bold text-black uppercase block mb-1">
-              Быстрая доставка
+              {dict.fast_delivery}
             </span>
-            <p>3-5 рабочих дней до двери или в пункт выдачи.</p>
+            <p>{dict.fast_delivery_desc}</p>
           </div>
         </div>
         <div className="flex items-start gap-x-3">
           <Refresh size={16} />
           <div>
             <span className="font-bold text-black uppercase block mb-1">
-              Простой обмен
+              {dict.easy_exchange}
             </span>
-            <p>Не подошел товар? Обменяем на новый без лишних хлопот.</p>
+            <p>{dict.easy_exchange_desc}</p>
           </div>
         </div>
         <div className="flex items-start gap-x-3">
           <Back size={16} />
           <div>
             <span className="font-bold text-black uppercase block mb-1">
-              Легкий возврат
+              {dict.easy_return}
             </span>
-            <p>Вернем деньги, если средство вам не подошло.</p>
+            <p>{dict.easy_return_desc}</p>
           </div>
         </div>
       </div>
