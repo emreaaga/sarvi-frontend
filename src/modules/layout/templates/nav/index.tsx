@@ -44,12 +44,10 @@ export default async function Nav() {
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
-      {/* Верхняя плашка — максимально компактная */}
       <div className="w-full bg-[#f3f3f3] text-center text-[10px] uppercase tracking-[0.15em] text-ui-fg-base border-b border-ui-border-base">
         бесплатная доставка от 1 млн сум
       </div>
 
-      {/* Основной хедер — высота h-14 (56px) */}
       <header className="relative h-14 mx-auto border-b duration-200 bg-white border-ui-border-base">
         <nav className="content-container flex items-center justify-between w-full h-full text-[11px] uppercase tracking-wider">
           {/* Левая часть */}
@@ -70,26 +68,30 @@ export default async function Nav() {
                 каталог +
               </LocalizedClientLink>
               <LocalizedClientLink
-                href="/brands"
+                href="/"
                 className="hover:text-ui-fg-disabled transition-colors"
+                prefetch={false}
               >
                 бренды
               </LocalizedClientLink>
               <LocalizedClientLink
-                href="/about"
+                href="/"
                 className="hover:text-ui-fg-disabled transition-colors"
+                prefetch={false}
               >
                 о нас
               </LocalizedClientLink>
               <LocalizedClientLink
-                href="/customers"
+                href="/"
                 className="hover:text-ui-fg-disabled transition-colors"
+                prefetch={false}
               >
                 покупателям
               </LocalizedClientLink>
               <LocalizedClientLink
-                href="/contacts"
+                href="/"
                 className="hover:text-ui-fg-disabled transition-colors"
+                prefetch={false}
               >
                 контакты
               </LocalizedClientLink>
@@ -111,11 +113,11 @@ export default async function Nav() {
             </LocalizedClientLink>
           </div>
 
-          {/* Правая часть */}
           <div className="flex items-center gap-x-5 h-full flex-1 basis-0 justify-end font-medium">
             <LocalizedClientLink
-              href="/wishlist"
+              href="/"
               className="hover:text-ui-fg-disabled transition-colors flex items-center"
+              prefetch={false}
             >
               <HeartIcon />
             </LocalizedClientLink>
