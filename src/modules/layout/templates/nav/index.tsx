@@ -1,6 +1,7 @@
 import { getLocale } from "@lib/data/locale-actions"
 import { listLocales } from "@lib/data/locales"
 import { listRegions } from "@lib/data/regions"
+import { getDictionary } from "@lib/dictionaries" // Импортируй созданную функцию
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
@@ -29,10 +30,12 @@ export default async function Nav() {
     getLocale(),
   ])
 
+  const dict = await getDictionary(currentLocale || "ru-RU")
+
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
       <div className="w-full bg-[#f3f3f3] text-center text-[10px] uppercase tracking-[0.15em] text-ui-fg-base border-b border-ui-border-base">
-        бесплатная доставка от 1 млн сум
+        {dict.nav.promo}
       </div>
 
       <header className="relative h-14 mx-auto border-b duration-200 bg-white border-ui-border-base">
@@ -52,39 +55,40 @@ export default async function Nav() {
                 href="/store"
                 className="hover:text-ui-fg-disabled transition-colors"
               >
-                каталог +
+                {dict.nav.catalog}
               </LocalizedClientLink>
               <LocalizedClientLink
                 href="/"
                 className="hover:text-ui-fg-disabled transition-colors"
                 prefetch={false}
               >
-                бренды
+                {dict.nav.brands}
+              </LocalizedClientLink>
+              <LocalizedClientLink
+                href="/about"
+                className="hover:text-ui-fg-disabled transition-colors"
+                prefetch={false}
+              >
+                {dict.nav.about}
               </LocalizedClientLink>
               <LocalizedClientLink
                 href="/"
                 className="hover:text-ui-fg-disabled transition-colors"
                 prefetch={false}
               >
-                о нас
+                {dict.nav.customers}
               </LocalizedClientLink>
               <LocalizedClientLink
                 href="/"
                 className="hover:text-ui-fg-disabled transition-colors"
                 prefetch={false}
               >
-                покупателям
-              </LocalizedClientLink>
-              <LocalizedClientLink
-                href="/"
-                className="hover:text-ui-fg-disabled transition-colors"
-                prefetch={false}
-              >
-                контакты
+                {dict.nav.contacts}
               </LocalizedClientLink>
             </div>
           </div>
 
+          {/* Центр (Логотип) */}
           <div className="flex items-center h-full">
             <LocalizedClientLink
               href="/"
@@ -100,6 +104,7 @@ export default async function Nav() {
             </LocalizedClientLink>
           </div>
 
+          {/* Правая часть */}
           <div className="flex items-center gap-x-5 h-full flex-1 basis-0 justify-end font-medium">
             <div className="hidden small:block border-r pr-5 border-ui-border-base">
               <LocaleSwitcher locales={locales} currentLocale={currentLocale} />
@@ -114,9 +119,14 @@ export default async function Nav() {
             </LocalizedClientLink>
 
             <Suspense
-              fallback={<span className="text-[11px]">корзина (0)</span>}
+              fallback={
+                <span className="text-[11px] uppercase">
+                  {dict.nav.cart} (0)
+                </span>
+              }
             >
               <div className="flex items-center h-full">
+                {/* Внутри CartButton тоже можно будет использовать dict */}
                 <CartButton />
               </div>
             </Suspense>

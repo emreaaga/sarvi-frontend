@@ -1,8 +1,13 @@
+import { getLocale } from "@lib/data/locale-actions"
+import { getDictionary } from "@lib/dictionaries"
 import { Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Image from "next/image"
 
 export default async function Footer() {
+  const locale = await getLocale()
+  const dict = await getDictionary(locale || "ru-RU")
+
   return (
     <footer className="border-t border-ui-border-base w-full bg-white font-sans">
       <div className="content-container flex flex-col w-full">
@@ -19,12 +24,12 @@ export default async function Footer() {
             </LocalizedClientLink>
 
             <Text className="text-ui-fg-subtle txt-small max-w-[280px]">
-              Ваш эксклюзивный гид в мире парфюмерии и стиля в Узбекистане.
+              {dict.footer.description}
             </Text>
 
             <div className="flex flex-col gap-y-3 pt-2">
               <span className="text-[10px] uppercase tracking-widest font-bold text-ui-fg-base">
-                Способы оплаты:
+                {dict.footer.payment_methods}
               </span>
               <div className="flex flex-wrap gap-3 opacity-90 grayscale hover:grayscale-0 transition-all duration-300">
                 <Image
@@ -58,34 +63,28 @@ export default async function Footer() {
           <div className="md:col-span-5 text-[10px] text-ui-fg-subtle space-y-8 uppercase tracking-[0.15em] leading-relaxed">
             <div>
               <p className="text-ui-fg-base font-bold mb-3">
-                Адрес шоурума №1:
+                {dict.footer.address_1_title}
               </p>
               <div className="space-y-1">
-                <p>Ташкент, ул. Большая Полянка, 44,</p>
-                <p>Вход с ул. Спасоналивковский пер.</p>
-                <p className="lowercase italic opacity-70">
-                  (на пересечении с ул. Большая Полянка)
-                </p>
+                <p>{dict.footer.address_1_body}</p>
                 <p className="pt-2 text-ui-fg-muted">
-                  Ближайшее метро: Октябрьская, Полянка, Добрынинская
+                  {dict.footer.address_1_metro}
                 </p>
               </div>
             </div>
             <div>
               <p className="text-ui-fg-base font-bold mb-3">
-                Адрес шоурума №2:
+                {dict.footer.address_2_title}
               </p>
               <div className="space-y-1">
-                <p>Ташкент, ул. Смольная, д.12, БЦ</p>
-                <p>«Алмазный Мир», 2 этаж, помещение 24В</p>
+                <p>{dict.footer.address_2_body}</p>
                 <p className="pt-2 text-ui-fg-muted">
-                  Ближайшее метро: Водный Стадион
+                  {dict.footer.address_2_metro}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Колонка 3: Контакты */}
           <div className="md:col-span-3 flex flex-col items-start md:items-end text-left md:text-right gap-y-6">
             <div className="space-y-1">
               <p className="text-[14px] font-bold tracking-tight text-ui-fg-base text-nowrap">
@@ -113,14 +112,11 @@ export default async function Footer() {
           </div>
         </div>
 
-        {/* НИЖНЯЯ ЧАСТЬ: Юридическая информация и Копирайт */}
         <div className="flex flex-col gap-y-6 pb-12 pt-8 text-ui-fg-muted">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[9px] leading-[1.6] tracking-normal uppercase">
             <div className="flex flex-col gap-y-2">
-              <p>© 2026 АО «*****», ИНН 7321409898. Все права защищены.</p>
-              <p>
-                Копирование материалов без разрешения правообладателя запрещено.
-              </p>
+              <p>{dict.footer.rights}</p>
+              <p>{dict.footer.copy_warning}</p>
             </div>
             <div className="flex flex-col gap-y-2 md:text-right">
               <div className="flex md:justify-end gap-x-4">
@@ -128,9 +124,9 @@ export default async function Footer() {
                   href="/privacy"
                   className="hover:text-ui-fg-base transition-colors underline-offset-4 underline"
                 >
-                  Политика конфиденциальности
+                  {dict.footer.privacy}
                 </LocalizedClientLink>
-                <span>Разработка сайта</span>
+                <span>{dict.footer.dev}</span>
               </div>
             </div>
           </div>
