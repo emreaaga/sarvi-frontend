@@ -6,11 +6,13 @@ import Product from "../product-preview"
 type RelatedProductsProps = {
   product: HttpTypes.StoreProduct
   countryCode: string
+  dict: any // 1. Добавляем словарь в типы пропсов
 }
 
 export default async function RelatedProducts({
   product,
   countryCode,
+  dict, // 2. Принимаем словарь
 }: RelatedProductsProps) {
   const region = await getRegion(countryCode)
 
@@ -50,17 +52,19 @@ export default async function RelatedProducts({
     <div className="product-page-constraint font-sans">
       <div className="flex flex-col items-center text-center mb-16">
         <span className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-4">
-          вам может понравиться
+          {/* 3. Переводим подзаголовок */}
+          {dict.related.subtitle}
         </span>
         <p className="text-[18px] text-[#333] max-w-lg lowercase tracking-tight">
-          рекомендуем обратить внимание на эти позиции
+          {/* 4. Переводим основной заголовок */}
+          {dict.related.title}
         </p>
       </div>
 
       <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-10">
-        {products.map((product) => (
-          <li key={product.id}>
-            <Product region={region} product={product} />
+        {products.map((item) => (
+          <li key={item.id}>
+            <Product region={region} product={item} dict={dict.product} />
           </li>
         ))}
       </ul>

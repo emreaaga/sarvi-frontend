@@ -7,9 +7,11 @@ import Image from "next/image"
 export default function ProductPreview({
   product,
   region,
+  dict,
 }: {
   product: HttpTypes.StoreProduct
   region: HttpTypes.StoreRegion
+  dict: any
 }) {
   const { cheapestPrice } = getProductPrice({ product })
 
@@ -59,8 +61,8 @@ export default function ProductPreview({
           {cheapestPrice ? (
             cheapestPrice.calculated_price
           ) : (
-            <span className="text-gray-400 italic font-normal text-[10px]">
-              Цена по запросу
+            <span className="text-gray-400 italic font-normal text-[10px] uppercase">
+              {dict.price_on_request}
             </span>
           )}
         </p>
@@ -75,7 +77,7 @@ export default function ProductPreview({
             variant="secondary"
             className="w-full h-6 md:h-7 text-[7px] md:text-[8px] px-0 tracking-tighter uppercase border-[#E5E5E5]"
           >
-            подробнее
+            {dict.details}
           </Button>
         </LocalizedClientLink>
 
@@ -83,7 +85,7 @@ export default function ProductPreview({
           variant="primary"
           className="flex-1 h-6 md:h-7 text-[7px] md:text-[8px] px-0 tracking-tighter uppercase"
         >
-          купить
+          {dict.buy}
         </Button>
       </div>
     </div>

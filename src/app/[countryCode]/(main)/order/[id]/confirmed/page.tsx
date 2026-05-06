@@ -1,4 +1,6 @@
+import { getLocale } from "@lib/data/locale-actions"
 import { retrieveOrder } from "@lib/data/orders"
+import { getDictionary } from "@lib/dictionaries"
 import OrderCompletedTemplate from "@modules/order/templates/order-completed-template"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
@@ -19,5 +21,8 @@ export default async function OrderConfirmedPage(props: Props) {
     return notFound()
   }
 
-  return <OrderCompletedTemplate order={order} />
+  const locale = await getLocale()
+  const dict = await getDictionary(locale || "ru-RU")
+
+  return <OrderCompletedTemplate order={order} dict={dict} />
 }

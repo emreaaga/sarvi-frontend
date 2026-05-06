@@ -1,5 +1,7 @@
 import { retrieveCart } from "@lib/data/cart"
 import { retrieveCustomer } from "@lib/data/customer"
+import { getLocale } from "@lib/data/locale-actions"
+import { getDictionary } from "@lib/dictionaries"
 import CartTemplate from "@modules/cart/templates"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
@@ -16,6 +18,8 @@ export default async function Cart() {
   })
 
   const customer = await retrieveCustomer()
+  const locale = await getLocale()
+  const dict = await getDictionary(locale || "ru-RU")
 
-  return <CartTemplate cart={cart} customer={customer} />
+  return <CartTemplate cart={cart} customer={customer} dict={dict} />
 }

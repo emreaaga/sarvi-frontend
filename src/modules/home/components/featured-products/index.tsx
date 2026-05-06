@@ -4,13 +4,15 @@ import ProductRail from "@modules/home/components/featured-products/product-rail
 export default async function FeaturedProducts({
   collections,
   region,
+  dict,
 }: {
   collections: HttpTypes.StoreCollection[]
   region: HttpTypes.StoreRegion
+  dict: any
 }) {
   return collections.map((collection) => (
     <li key={collection.id}>
-      <ProductRail collection={collection} region={region} />
+      <ProductRail collection={collection} region={region} dict={dict} />
     </li>
   ))
 }

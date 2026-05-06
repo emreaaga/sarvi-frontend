@@ -10,11 +10,13 @@ export default function ProductSlider({
   products,
   region,
   title,
+  dict,
   handle,
 }: {
   products: HttpTypes.StoreProduct[]
   region: HttpTypes.StoreRegion
   title: string
+  dict: any
   handle: string
 }) {
   const sliderRef = useRef<HTMLUListElement>(null)
@@ -84,7 +86,7 @@ export default function ProductSlider({
             key={product.id}
             className="min-w-[60%] md:min-w-[28%] lg:min-w-[19%] snap-start"
           >
-            <ProductPreview product={product} region={region} />
+            <ProductPreview product={product} region={region} dict={dict} />
           </li>
         ))}
       </ul>

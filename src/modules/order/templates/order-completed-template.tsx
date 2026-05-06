@@ -1,21 +1,23 @@
 import { Heading } from "@medusajs/ui"
 import { cookies as nextCookies } from "next/headers"
 
+import { HttpTypes } from "@medusajs/types"
 import CartTotals from "@modules/common/components/cart-totals"
 import Help from "@modules/order/components/help"
 import Items from "@modules/order/components/items"
 import OnboardingCta from "@modules/order/components/onboarding-cta"
 import OrderDetails from "@modules/order/components/order-details"
-import ShippingDetails from "@modules/order/components/shipping-details"
 import PaymentDetails from "@modules/order/components/payment-details"
-import { HttpTypes } from "@medusajs/types"
+import ShippingDetails from "@modules/order/components/shipping-details"
 
 type OrderCompletedTemplateProps = {
   order: HttpTypes.StoreOrder
+  dict: any
 }
 
 export default async function OrderCompletedTemplate({
   order,
+  dict,
 }: OrderCompletedTemplateProps) {
   const cookies = await nextCookies()
 
@@ -31,17 +33,19 @@ export default async function OrderCompletedTemplate({
         >
           <Heading
             level="h1"
-            className="flex flex-col gap-y-3 text-ui-fg-base text-3xl mb-4"
+            className="flex flex-col gap-y-3 text-ui-fg-base text-3xl mb-4 uppercase tracking-tighter"
           >
-            <span>Thank you!</span>
-            <span>Your order was placed successfully.</span>
+            <span>{dict.order_confirmed.thank_you}</span>
+            <span className="text-lg font-normal text-ui-fg-subtle">
+              {dict.order_confirmed.success_message}
+            </span>
           </Heading>
           <OrderDetails order={order} />
           <Heading level="h2" className="flex flex-row text-3xl-regular">
             Summary
           </Heading>
           <Items order={order} />
-          <CartTotals totals={order} />
+          <CartTotals totals={order as any} dict={dict.cart_page} />
           <ShippingDetails order={order} />
           <PaymentDetails order={order} />
           <Help />

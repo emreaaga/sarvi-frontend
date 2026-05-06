@@ -9,6 +9,8 @@ import ProductInfo from "@modules/products/templates/product-info"
 import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-related-products"
 import { notFound } from "next/navigation"
 
+import { getLocale } from "@lib/data/locale-actions"
+import { getDictionary } from "@lib/dictionaries"
 import ProductActionsWrapper from "./product-actions-wrapper"
 
 type ProductTemplateProps = {
@@ -18,12 +20,15 @@ type ProductTemplateProps = {
   images: HttpTypes.StoreProductImage[]
 }
 
-const ProductTemplate: React.FC<ProductTemplateProps> = ({
+const ProductTemplate: React.FC<ProductTemplateProps> = async ({
   product,
   region,
   countryCode,
   images,
 }) => {
+  const locale = await getLocale()
+  const dict = await getDictionary(locale || "ru-RU")
+
   if (!product || !product.id) {
     return notFound()
   }
@@ -60,7 +65,11 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         data-testid="related-products-container"
       >
         <Suspense fallback={<SkeletonRelatedProducts />}>
-          <RelatedProducts product={product} countryCode={countryCode} />
+          <RelatedProducts
+            product={product}
+            countryCode={countryCode}
+            dict={dict}
+          />
         </Suspense>
       </div>
     </>

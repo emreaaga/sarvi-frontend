@@ -1,5 +1,7 @@
+import { getLocale } from "@lib/data/locale-actions"
 import { listProductsWithSort } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
+import { getDictionary } from "@lib/dictionaries"
 import ProductPreview from "@modules/products/components/product-preview"
 import { Pagination } from "@modules/store/components/pagination"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
@@ -62,6 +64,9 @@ export default async function PaginatedProducts({
     return null
   }
 
+  const locale = await getLocale()
+  const dict = await getDictionary(locale || "ru-RU")
+
   let {
     response: { products, count },
   } = await listProductsWithSort({
@@ -82,7 +87,7 @@ export default async function PaginatedProducts({
         {products.map((p) => {
           return (
             <li key={p.id}>
-              <ProductPreview product={p} region={region} />
+              <ProductPreview product={p} region={region} dict={dict.product} />
             </li>
           )
         })}

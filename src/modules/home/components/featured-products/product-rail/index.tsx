@@ -5,9 +5,11 @@ import ProductSlider from "../product-slider"
 export default async function ProductRail({
   collection,
   region,
+  dict,
 }: {
   collection: HttpTypes.StoreCollection
   region: HttpTypes.StoreRegion
+  dict: any
 }) {
   const {
     response: { products: pricedProducts },
@@ -28,6 +30,7 @@ export default async function ProductRail({
         region={region}
         title={collection.title}
         handle={collection.handle}
+        dict={dict}
       />
     </div>
   )

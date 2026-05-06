@@ -11,6 +11,7 @@ type SummaryProps = {
   cart: HttpTypes.StoreCart & {
     promotions: HttpTypes.StorePromotion[]
   }
+  dict: any
 }
 
 function getCheckoutStep(cart: HttpTypes.StoreCart) {
@@ -23,7 +24,7 @@ function getCheckoutStep(cart: HttpTypes.StoreCart) {
   }
 }
 
-const Summary = ({ cart }: SummaryProps) => {
+const Summary = ({ cart, dict }: SummaryProps) => {
   const step = getCheckoutStep(cart)
 
   return (
@@ -32,14 +33,12 @@ const Summary = ({ cart }: SummaryProps) => {
         level="h2"
         className="text-[20px] uppercase tracking-[0.2em] font-bold text-black"
       >
-        итог
+        {dict.summary_title}
       </Heading>
-
-      {/*<DiscountCode cart={cart} />*/}
 
       <Divider />
 
-      <CartTotals totals={cart} />
+      <CartTotals totals={cart} dict={dict} />
 
       <LocalizedClientLink
         href={"/checkout?step=" + step}
@@ -47,7 +46,7 @@ const Summary = ({ cart }: SummaryProps) => {
         className="w-full block mt-4"
       >
         <Button className="h-12 text-[11px] tracking-[0.2em]">
-          оформить заказ
+          {dict.checkout}
         </Button>
       </LocalizedClientLink>
     </div>

@@ -7,11 +7,80 @@
     "customers": "покупателям",
     "contacts": "контакты",
     "cart": "корзина",
-    "wishlist": "избранное"
+    "wishlist": "избранное",
+    "back": "назад",
+    "back_to_cart": "назад в корзину",
+    "rights_reserved": "все права защищены"
+  },
+  "checkout": {
+    "shipping_address": "адрес доставки",
+    "billing_address": "платежный адрес",
+    "edit": "изменить",
+    "contacts": "контакты",
+    "same_as_shipping": "совпадает с адресом доставки.",
+    "same_as_billing_checkbox": "платежный адрес совпадает с адресом доставки",
+    "go_to_shipping": "перейти к доставке",
+    "go_to_payment": "перейти к оплате",
+    "go_to_review": "проверить заказ",
+    "place_order": "подтвердить заказ",
+    "first_name": "имя",
+    "last_name": "фамилия",
+    "address": "адрес",
+    "address_placeholder": "улица, дом, квартира",
+    "company": "компания",
+    "company_optional": "компания (необязательно)",
+    "postal_code": "почтовый индекс",
+    "city": "город",
+    "province": "область / регион",
+    "phone": "телефон",
+    "country": "страна",
+    "email": "email",
+    "saved_address_greeting": "привет, {name}! хотите использовать один из сохраненных адресов?",
+    "shipping_method": "способ доставки",
+    "payment_method": "способ оплаты",
+    "payment_details": "детали оплаты",
+    "review_order": "проверка заказа",
+    "review_text": "пожалуйста, проверьте данные вашего заказа перед подтверждением.",
+    "items": "товары",
+    "delivery": "доставка",
+    "payment": "оплата"
   },
   "hero": {
     "description": "ваш проводник в мир премиальной k-beauty. прямые поставки оригинальной корейской косметики: в наличии и под заказ.",
     "button": "перейти в каталог"
+  },
+  "order_confirmed": {
+    "title": "Заказ подтвержден",
+    "description": "Ваша покупка прошла успешно",
+    "thank_you": "Спасибо!",
+    "success_message": "Ваш заказ был успешно размещен.",
+    "summary": "Итог заказа"
+  },
+  "product": {
+    "details": "подробнее",
+    "buy": "купить",
+    "price_on_request": "цена по запросу"
+  },
+  "cart_page": {
+    "title": "корзина",
+    "table_item": "товар",
+    "table_quantity": "кол-во",
+    "table_price": "цена",
+    "table_total": "итого",
+    "empty_title": "ваша корзина пуста",
+    "empty_text": "кажется, вы еще ничего не выбрали...",
+    "go_to_store": "перейти в каталог",
+    "summary_title": "итог",
+    "subtotal": "сумма товаров",
+    "shipping": "доставка",
+    "discount": "скидка",
+    "taxes": "налоги",
+    "total": "итого",
+    "checkout": "оформить заказ"
+  },
+  "related": {
+    "subtitle": "вам может понравиться",
+    "title": "рекомендуем обратить внимание на эти позиции"
   },
   "cart_dropdown": {
     "cart": "корзина",

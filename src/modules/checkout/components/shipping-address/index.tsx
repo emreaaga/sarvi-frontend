@@ -1,6 +1,7 @@
+"use client"
+
 import { HttpTypes } from "@medusajs/types"
 import { Container } from "@medusajs/ui"
-import Checkbox from "@modules/common/components/checkbox"
 import Input from "@modules/common/components/input"
 import { mapKeys } from "lodash"
 import React, { useEffect, useMemo, useState } from "react"
@@ -12,11 +13,13 @@ const ShippingAddress = ({
   cart,
   checked,
   onChange,
+  dict,
 }: {
   customer: HttpTypes.StoreCustomer | null
   cart: HttpTypes.StoreCart | null
   checked: boolean
   onChange: () => void
+  dict: any
 }) => {
   const [formData, setFormData] = useState<Record<string, any>>({
     "shipping_address.first_name": cart?.shipping_address?.first_name || "",
@@ -36,7 +39,6 @@ const ShippingAddress = ({
     [cart?.region]
   )
 
-  // check if customer has saved addresses that are in the current region
   const addressesInRegion = useMemo(
     () =>
       customer?.addresses.filter(
@@ -71,7 +73,6 @@ const ShippingAddress = ({
   }
 
   useEffect(() => {
-    // Ensure cart is not null and has a shipping_address before setting form data
     if (cart && cart.shipping_address) {
       setFormAddress(cart?.shipping_address, cart?.email)
     }
@@ -79,12 +80,10 @@ const ShippingAddress = ({
     if (cart && !cart.email && customer?.email) {
       setFormAddress(undefined, customer.email)
     }
-  }, [cart]) // Add cart as a dependency
+  }, [cart])
 
   const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLInputElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     setFormData({
       ...formData,
@@ -97,7 +96,7 @@ const ShippingAddress = ({
       {customer && (addressesInRegion?.length || 0) > 0 && (
         <Container className="mb-6 flex flex-col gap-y-4 p-5 font-sans">
           <p className="text-[12px] text-gray-600">
-            {`Привет, ${customer.first_name}! Хотите использовать один из сохраненных адресов?`}
+            {dict.saved_address_greeting.replace("{name}", customer.first_name)}
           </p>
           <AddressSelect
             addresses={customer.addresses}
@@ -112,57 +111,51 @@ const ShippingAddress = ({
       )}
       <div className="grid grid-cols-2 gap-4 font-sans">
         <Input
-          label="Имя"
+          label={dict.first_name}
           name="shipping_address.first_name"
           autoComplete="given-name"
           value={formData["shipping_address.first_name"]}
           onChange={handleChange}
           required
-          data-testid="shipping-first-name-input"
         />
         <Input
-          label="Фамилия"
+          label={dict.last_name}
           name="shipping_address.last_name"
           autoComplete="family-name"
           value={formData["shipping_address.last_name"]}
           onChange={handleChange}
           required
-          data-testid="shipping-last-name-input"
         />
         <Input
-          label="Улица, дом, квартира"
+          label={dict.address_placeholder}
           name="shipping_address.address_1"
           autoComplete="address-line1"
           value={formData["shipping_address.address_1"]}
           onChange={handleChange}
           required
-          data-testid="shipping-address-input"
         />
         <Input
-          label="Компания (необязательно)"
+          label={dict.company_optional}
           name="shipping_address.company"
           value={formData["shipping_address.company"]}
           onChange={handleChange}
           autoComplete="organization"
-          data-testid="shipping-company-input"
         />
         <Input
-          label="Почтовый индекс"
+          label={dict.postal_code}
           name="shipping_address.postal_code"
           autoComplete="postal-code"
           value={formData["shipping_address.postal_code"]}
           onChange={handleChange}
           required
-          data-testid="shipping-postal-code-input"
         />
         <Input
-          label="Город"
+          label={dict.city}
           name="shipping_address.city"
           autoComplete="address-level2"
           value={formData["shipping_address.city"]}
           onChange={handleChange}
           required
-          data-testid="shipping-city-input"
         />
         <CountrySelect
           name="shipping_address.country_code"
@@ -171,45 +164,36 @@ const ShippingAddress = ({
           value={formData["shipping_address.country_code"]}
           onChange={handleChange}
           required
-          data-testid="shipping-country-select"
+          placeholder={dict.country}
         />
         <Input
-          label="Область / Регион"
+          label={dict.province}
           name="shipping_address.province"
           autoComplete="address-level1"
           value={formData["shipping_address.province"]}
           onChange={handleChange}
-          data-testid="shipping-province-input"
         />
       </div>
-      <div className="my-8 font-sans">
-        <Checkbox
-          label="Платежный адрес совпадает с адресом доставки"
-          name="same_as_billing"
-          checked={checked}
-          onChange={onChange}
-          data-testid="billing-address-checkbox"
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-4 mb-4 font-sans">
+
+      {/* Скрытый инпут для автоматической синхронизации Billing адреса */}
+      <input type="hidden" name="same_as_billing" value="on" />
+
+      <div className="grid grid-cols-2 gap-4 mt-8 mb-4 font-sans">
         <Input
           label="Email"
           name="email"
           type="email"
-          title="Введите корректный email адрес."
           autoComplete="email"
           value={formData.email}
           onChange={handleChange}
           required
-          data-testid="shipping-email-input"
         />
         <Input
-          label="Телефон"
+          label={dict.phone}
           name="shipping_address.phone"
           autoComplete="tel"
           value={formData["shipping_address.phone"]}
           onChange={handleChange}
-          data-testid="shipping-phone-input"
         />
       </div>
     </>

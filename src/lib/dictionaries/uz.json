@@ -7,11 +7,80 @@
     "customers": "mijozlar uchun",
     "contacts": "aloqa",
     "cart": "savat",
-    "wishlist": "sevimlilar"
+    "wishlist": "sevimlilar",
+    "back": "orqaga",
+    "back_to_cart": "korzinaga qaytish",
+    "rights_reserved": "barcha huquqlar himoyalangan"
+  },
+  "checkout": {
+    "shipping_address": "yetkazib berish manzili",
+    "billing_address": "to'lov manzili",
+    "edit": "o'zgartirish",
+    "contacts": "kontaktlar",
+    "same_as_shipping": "yetkazib berish manzili bilan bir xil.",
+    "same_as_billing_checkbox": "to'lov manzili yetkazib berish manzili bilan bir xil",
+    "go_to_shipping": "yetkazib berishga o'tish",
+    "go_to_payment": "to'lovga o'tish",
+    "go_to_review": "buyurtmani tekshirish",
+    "place_order": "buyurtmani tasdiqlash",
+    "first_name": "ism",
+    "last_name": "familiya",
+    "address": "manzil",
+    "address_placeholder": "ko'cha, uy, xonadon",
+    "company": "kompaniya",
+    "company_optional": "kompaniya (ixtiyoriy)",
+    "postal_code": "pochta indeksi",
+    "city": "shahar",
+    "province": "viloyat / hudud",
+    "phone": "telefon",
+    "country": "mamlakat",
+    "email": "email",
+    "saved_address_greeting": "salom, {name}! saqlangan manzillardan birini ishlatishni xohlaysizmi?",
+    "shipping_method": "yetkazib berish usuli",
+    "payment_method": "to'lov usuli",
+    "payment_details": "to'lov tafsilotlari",
+    "review_order": "buyurtmani tekshirish",
+    "review_text": "iltimos, tasdiqlashdan oldin buyurtma ma'lumotlarini tekshiring.",
+    "items": "mahsulotlar",
+    "delivery": "yetkazib berish",
+    "payment": "to'lov"
   },
   "hero": {
     "description": "premium k-beauty dunyosidagi yo'lboshchingiz. original koreya kosmetikasini to'g'ridan-to'g'ri yetkazib berish: mavjud va buyurtma asosida.",
     "button": "katalogni ko'rish"
+  },
+  "order_confirmed": {
+    "title": "Buyurtma tasdiqlandi",
+    "description": "Xaridingiz muvaffaqiyatli yakunlandi",
+    "thank_you": "Rahmat!",
+    "success_message": "Buyurtmangiz muvaffaqiyatli qabul qilindi.",
+    "summary": "Buyurtma hisobi"
+  },
+  "related": {
+    "subtitle": "sizga yoqishi mumkin",
+    "title": "ushbu mahsulotlarga e'tibor qaratishni tavsiya etamiz"
+  },
+  "product": {
+    "details": "batafsil",
+    "buy": "sotib olish",
+    "price_on_request": "narx so'rov bo'yicha"
+  },
+  "cart_page": {
+    "title": "korzina",
+    "table_item": "mahsulot",
+    "table_quantity": "miqdor",
+    "table_price": "narx",
+    "table_total": "jami",
+    "empty_title": "korzinangiz bo'sh",
+    "empty_text": "siz hali hech narsa tanlamaganga o'xshaysiz...",
+    "go_to_store": "katalogga o'tish",
+    "summary_title": "jami",
+    "subtotal": "mahsulotlar summasi",
+    "shipping": "yetkazib berish",
+    "discount": "chegirma",
+    "taxes": "soliqlar",
+    "total": "umumiy jami",
+    "checkout": "buyurtma berish"
   },
   "cart_dropdown": {
     "cart": "korzina",
