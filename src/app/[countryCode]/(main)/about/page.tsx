@@ -1,3 +1,5 @@
+import { getLocale } from "@lib/data/locale-actions"
+import { getDictionary } from "@lib/dictionaries"
 import { Metadata } from "next"
 import Image from "next/image"
 
@@ -7,7 +9,12 @@ export const metadata: Metadata = {
     "Команда Sarvi Cosmetics — твой гид по самой желанной и редкой корейской косметике.",
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const locale = await getLocale()
+  const dict = await getDictionary(locale || "ru-RU")
+
+  const d = dict.about_page
+
   return (
     <main className="w-full bg-white font-sans">
       <section className="grid grid-cols-1 md:grid-cols-3 w-full">
@@ -47,26 +54,18 @@ export default function AboutPage() {
         {/* Левая часть: заголовок */}
         <div className="col-span-1">
           <h2 className="text-[11px] tracking-[0.2em] uppercase text-[#222] font-normal">
-            о нас
+            {d.header}
           </h2>
         </div>
 
         {/* Правая часть: основной текст */}
         <div className="col-span-1 max-w-[550px]">
-          <p className="text-[11px] text-[#888] mb-8 lowercase">привет! 🤍</p>
+          <p className="text-[11px] text-[#888] mb-8 lowercase">{d.greeting}</p>
 
           <div className="text-[11px] leading-[2.2] tracking-[0.03em] text-[#333] space-y-6 font-light uppercase">
-            <p>
-              на связи команда sarvi cosmetics — твой гид по самой желанной и
-              редкой корейской косметике, которую ищут все.
-            </p>
-            <p>
-              для вас, огромный ассортимент самой модной косметики в наличии!
-            </p>
-            <p>
-              готовы воплотить твой wish list желанных позиций в реальность
-              каким бы длинным он не был!
-            </p>
+            <p>{d.p1}</p>
+            <p>{d.p2}</p>
+            <p>{d.p3}</p>
           </div>
         </div>
       </section>
@@ -82,7 +81,7 @@ export default function AboutPage() {
 
         <div className="absolute top-12 right-12 text-right px-4">
           <p className="text-[13px] tracking-[0.15em] text-white/80 uppercase font-light">
-            sarvi cosmetics — твой личный бьюти-консьерж
+            {d.banner}
           </p>
         </div>
       </section>

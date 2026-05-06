@@ -104,7 +104,6 @@ export default async function Nav() {
             </LocalizedClientLink>
           </div>
 
-          {/* Правая часть */}
           <div className="flex items-center gap-x-5 h-full flex-1 basis-0 justify-end font-medium">
             <div className="hidden small:block border-r pr-5 border-ui-border-base">
               <LocaleSwitcher locales={locales} currentLocale={currentLocale} />
@@ -126,8 +125,7 @@ export default async function Nav() {
               }
             >
               <div className="flex items-center h-full">
-                {/* Внутри CartButton тоже можно будет использовать dict */}
-                <CartButton />
+                <CartButton />{" "}
               </div>
             </Suspense>
           </div>

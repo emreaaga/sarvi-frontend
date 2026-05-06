@@ -34,9 +34,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
       {customer && cart && (
         <CartMismatchBanner customer={customer} cart={cart} />
       )}
-
       <PromoModal />
-
       {cart && (
         <FreeShippingPriceNudge
           variant="popup"

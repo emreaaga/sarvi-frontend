@@ -8,9 +8,8 @@ import {
 } from "@headlessui/react"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
-import Button from "@modules/common/components/button" // Твоя черная кнопка
+import Button from "@modules/common/components/button"
 import DeleteButton from "@modules/common/components/delete-button"
-import LineItemOptions from "@modules/common/components/line-item-options"
 import LineItemPrice from "@modules/common/components/line-item-price"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "@modules/products/components/thumbnail"
@@ -19,8 +18,10 @@ import { Fragment, useEffect, useRef, useState } from "react"
 
 const CartDropdown = ({
   cart: cartState,
+  dict,
 }: {
   cart?: HttpTypes.StoreCart | null
+  dict: any
 }) => {
   const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
     undefined
@@ -40,25 +41,18 @@ const CartDropdown = ({
 
   const timedOpen = () => {
     open()
-
     const timer = setTimeout(close, 5000)
-
     setActiveTimer(timer)
   }
 
   const openAndCancel = () => {
-    if (activeTimer) {
-      clearTimeout(activeTimer)
-    }
-
+    if (activeTimer) clearTimeout(activeTimer)
     open()
   }
 
   useEffect(() => {
     return () => {
-      if (activeTimer) {
-        clearTimeout(activeTimer)
-      }
+      if (activeTimer) clearTimeout(activeTimer)
     }
   }, [activeTimer])
 
@@ -83,7 +77,7 @@ const CartDropdown = ({
             href="/cart"
             data-testid="nav-cart-link"
           >
-            {`корзина (${totalItems})`}
+            {`${dict.cart} (${totalItems})`}
           </LocalizedClientLink>
         </PopoverButton>
         <Transition
@@ -103,18 +97,16 @@ const CartDropdown = ({
           >
             <div className="p-4 flex items-center justify-center border-b border-gray-50">
               <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold">
-                корзина
+                {dict.cart}
               </h3>
             </div>
             {cartState && cartState.items?.length ? (
               <>
                 <div className="overflow-y-auto max-h-[320px] px-4 py-4 flex flex-col gap-y-6 no-scrollbar custom-scrollbar">
                   {cartState.items
-                    .sort((a, b) => {
-                      return (a.created_at ?? "") > (b.created_at ?? "")
-                        ? -1
-                        : 1
-                    })
+                    .sort((a, b) =>
+                      (a.created_at ?? "") > (b.created_at ?? "") ? -1 : 1
+                    )
                     .map((item) => (
                       <div
                         className="flex gap-x-4"
@@ -143,15 +135,11 @@ const CartDropdown = ({
                                     {item.title}
                                   </LocalizedClientLink>
                                 </h3>
-                                <LineItemOptions
-                                  variant={item.variant}
-                                  data-testid="cart-item-variant"
-                                />
                                 <span
                                   className="text-gray-400 mt-1"
                                   data-testid="cart-item-quantity"
                                 >
-                                  кол-во: {item.quantity}
+                                  {dict.quantity}: {item.quantity}
                                 </span>
                               </div>
                               <div className="flex justify-end font-medium text-black">
@@ -168,7 +156,7 @@ const CartDropdown = ({
                             className="mt-2 text-gray-400 hover:text-red-500 transition-colors text-[10px] uppercase tracking-wider w-fit"
                             data-testid="cart-item-remove-button"
                           >
-                            удалить
+                            {dict.remove}
                           </DeleteButton>
                         </div>
                       </div>
@@ -177,9 +165,9 @@ const CartDropdown = ({
                 <div className="p-4 flex flex-col gap-y-4 border-t border-gray-50">
                   <div className="flex items-center justify-between text-[11px]">
                     <span className="text-gray-500 uppercase tracking-widest font-bold">
-                      итого{" "}
+                      {dict.subtotal}{" "}
                       <span className="font-normal lowercase text-[9px]">
-                        (без доставки)
+                        {dict.excluding_tax}
                       </span>
                     </span>
                     <span
@@ -197,7 +185,7 @@ const CartDropdown = ({
                       className="w-full h-10"
                       data-testid="go-to-cart-button"
                     >
-                      в корзину
+                      {dict.go_to_cart}
                     </Button>
                   </LocalizedClientLink>
                 </div>
@@ -209,16 +197,13 @@ const CartDropdown = ({
                     <span>0</span>
                   </div>
                   <span className="text-[10px] uppercase tracking-[0.15em] text-gray-400">
-                    ваша корзина пуста
+                    {dict.empty}
                   </span>
                   <div>
                     <LocalizedClientLink href="/store">
                       <>
-                        <span className="sr-only">
-                          Перейти к списку товаров
-                        </span>
                         <Button onClick={close} className="h-10 px-6">
-                          в каталог
+                          {dict.go_to_store}
                         </Button>
                       </>
                     </LocalizedClientLink>

@@ -121,7 +121,7 @@ export default async function Footer() {
             <div className="flex flex-col gap-y-2 md:text-right">
               <div className="flex md:justify-end gap-x-4">
                 <LocalizedClientLink
-                  href="/privacy"
+                  href="/"
                   className="hover:text-ui-fg-base transition-colors underline-offset-4 underline"
                 >
                   {dict.footer.privacy}

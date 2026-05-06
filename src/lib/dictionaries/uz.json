@@ -13,6 +13,16 @@
     "description": "premium k-beauty dunyosidagi yo'lboshchingiz. original koreya kosmetikasini to'g'ridan-to'g'ri yetkazib berish: mavjud va buyurtma asosida.",
     "button": "katalogni ko'rish"
   },
+  "cart_dropdown": {
+    "cart": "korzina",
+    "quantity": "miqdor",
+    "remove": "o'chirish",
+    "subtotal": "jami",
+    "excluding_tax": "(yetkazib berishsiz)",
+    "go_to_cart": "korzinaga o'tish",
+    "empty": "korzinangiz bo'sh",
+    "go_to_store": "katalogga o'tish"
+  },
   "categories": {
     "title": "katalog",
     "spf": "spf",
