@@ -4,23 +4,10 @@ import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
+import LocaleSwitcher from "@modules/layout/components/locale-switcher"
 import SideMenu from "@modules/layout/components/side-menu"
 import Image from "next/image"
 import { Suspense } from "react"
-
-const SearchIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-  >
-    <circle cx="11" cy="11" r="8" />
-    <path d="m21 21-4.3-4.3" />
-  </svg>
-)
 
 const HeartIcon = () => (
   <svg
@@ -114,6 +101,10 @@ export default async function Nav() {
           </div>
 
           <div className="flex items-center gap-x-5 h-full flex-1 basis-0 justify-end font-medium">
+            <div className="hidden small:block border-r pr-5 border-ui-border-base">
+              <LocaleSwitcher locales={locales} currentLocale={currentLocale} />
+            </div>
+
             <LocalizedClientLink
               href="/"
               className="hover:text-ui-fg-disabled transition-colors flex items-center"
