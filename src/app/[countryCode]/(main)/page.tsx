@@ -1,7 +1,9 @@
 import { Metadata } from "next"
 
 import { listCollections } from "@lib/data/collections"
+import { getLocale } from "@lib/data/locale-actions"
 import { getRegion } from "@lib/data/regions"
+import { getDictionary } from "@lib/dictionaries"
 import About from "@modules/home/components/about"
 import Atelier from "@modules/home/components/atelier"
 import Brands from "@modules/home/components/brands"
@@ -20,11 +22,12 @@ export default async function Home(props: {
   params: Promise<{ countryCode: string }>
 }) {
   const params = await props.params
-
   const { countryCode } = params
 
-  const region = await getRegion(countryCode)
+  const locale = await getLocale()
+  const dict = await getDictionary(locale || "ru-RU")
 
+  const region = await getRegion(countryCode)
   const { collections } = await listCollections({
     fields: "id, handle, title",
   })
@@ -35,18 +38,22 @@ export default async function Home(props: {
 
   return (
     <>
-      <Hero />
-      <CategoryGrid />
+      <Hero dict={dict.hero} />
+
+      <CategoryGrid dict={dict.categories} />
+
       <div className="py-2">
         <ul className="flex flex-col gap-x-6">
           <FeaturedProducts collections={collections} region={region} />
         </ul>
       </div>
-      <Brands />
-      <About />
-      <Atelier />
-      <Visit />
-      <Service />
+
+      <Brands dict={dict.nav} />
+
+      <About dict={dict.about} />
+      <Atelier dict={dict.atelier} />
+      <Visit dict={dict.visit} />
+      <Service dict={dict.service} />
     </>
   )
 }

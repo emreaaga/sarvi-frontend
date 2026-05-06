@@ -13,14 +13,13 @@ export const BRANDS_DATA = [
   },
 ]
 
-// ... ваш импорт
-const Brands = () => {
+const Brands = ({ dict }: { dict: any }) => {
   return (
     <section className="w-full bg-[#FFFDF8] font-sans py-20">
       <div className="content-container px-4 md:px-10">
         <div className="flex justify-between items-center mb-10">
           <Text className="text-[12px] md:text-lg uppercase tracking-[0.2em] font-semibold text-[#1a1a1a]">
-            бренды
+            {dict.brands}
           </Text>
         </div>
 
@@ -28,10 +27,9 @@ const Brands = () => {
           {BRANDS_DATA.map((brand, idx) => (
             <LocalizedClientLink
               key={idx}
-              href={`/brands/${brand.handle}`} // Обновленная ссылка
+              href={`/brands/${brand.handle}`}
               className="group relative aspect-[3/4] w-full overflow-hidden"
             >
-              {/* Остальной код карточки остается без изменений */}
               <Image
                 src={brand.src}
                 alt={brand.name}
@@ -52,4 +50,5 @@ const Brands = () => {
     </section>
   )
 }
+
 export default Brands

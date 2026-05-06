@@ -1,7 +1,7 @@
 import Button from "@modules/common/components/button"
 import Image from "next/image"
 
-export const Atelier = () => {
+const Atelier = ({ dict }: { dict: any }) => {
   return (
     <section className="bg-[#F7F7F7] w-full min-h-[650px] md:min-h-[800px] xl:min-h-[1100px] flex items-center justify-center relative overflow-hidden font-sans py-12 md:py-20">
       <div className="absolute top-[5%] left-[2%] md:top-[8%] md:left-[4%] w-[130px] h-[190px] md:w-[350px] md:h-[580px] opacity-80 md:opacity-100 transition-transform duration-1000 hover:scale-105 z-10">
@@ -45,17 +45,17 @@ export const Atelier = () => {
           SARVI <br /> COSMETICS
         </h2>
 
+        {/* Используем описание из словаря */}
         <p className="text-[10px] md:text-[13px] leading-[1.5] text-[#333333] max-w-[280px] md:max-w-[420px]">
-          Для самых искушенных ценителей мы предоставляем услугу{" "}
-          <br className="hidden md:block" />
-          Diamond Atelier — создадим украшение по вашему дизайну.
+          {dict.description}
         </p>
 
+        {/* Используем текст кнопки из словаря */}
         <Button
           variant="primary"
           className="mt-2 md:mt-4 px-8 md:px-10 h-10 md:h-12 text-[8px] md:text-[10px] tracking-widest uppercase border-none rounded-sm transition-opacity hover:opacity-90 bg-[#1A1A1A] text-white"
         >
-          Оставить заявку
+          {dict.button}
         </Button>
       </div>
     </section>

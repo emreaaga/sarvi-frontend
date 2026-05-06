@@ -2,7 +2,7 @@ import { Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Image from "next/image"
 
-const CategoryGrid = () => {
+const CategoryGrid = ({ dict }: { dict: any }) => {
   const GridItem = ({
     label,
     src,
@@ -45,50 +45,51 @@ const CategoryGrid = () => {
   return (
     <section className="py-10 md:py-20 border-t border-ui-border-base">
       <div className="content-container">
-        {/* Хедер в едином стиле с компонентом Brands */}
+        {/* Заголовок секции из словаря */}
         <div className="flex justify-between items-center mb-10">
           <Text className="text-[12px] md:text-lg uppercase tracking-[0.2em] font-semibold text-[#1a1a1a]">
-            каталог
+            {dict.title}
           </Text>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-gray-200">
           <GridItem
-            label="spf"
+            label={dict.spf}
             src="/images/categories/spf.png"
             href="/store?category=spf"
           />
           <GridItem
-            label="penka"
+            label={dict.penka}
             src="/images/categories/penka.png"
             href="/store?category=penka"
           />
           <GridItem
-            label="toner"
+            label={dict.toner}
             src="/images/categories/toner.png"
             href="/store?category=toner"
           />
           <GridItem
-            label="serum"
+            label={dict.serum}
             src="/images/categories/serum.png"
             href="/store?category=serum"
           />
 
           <GridItem
-            label="mist"
+            label={dict.mist}
             src="/images/categories/mist-wide.png"
             href="/store?category=mist"
             className="col-span-2"
             aspectClass="aspect-[2/1]"
           />
           <GridItem
-            label="sarvi"
+            label={dict.sarvi}
             src="/images/categories/about-sarvi.png"
             href="/about"
           />
 
+          {/* Десктопная версия "Все товары" */}
           <GridItem
-            label="все товары"
+            label={dict.all_products}
             src="/images/categories/all-products-tall.png"
             href="/store"
             className="hidden md:flex md:row-span-2"
@@ -96,23 +97,24 @@ const CategoryGrid = () => {
           />
 
           <GridItem
-            label="новинки"
+            label={dict.new}
             src="/images/categories/new.png"
             href="/store?category=new"
           />
           <GridItem
-            label="cream"
+            label={dict.cream}
             src="/images/categories/cream.png"
             href="/store?category=cream"
           />
           <GridItem
-            label="sale"
+            label={dict.sale}
             src="/images/categories/sale.png"
             href="/store?category=sale"
           />
 
+          {/* Мобильная версия "Все товары" */}
           <GridItem
-            label="все товары"
+            label={dict.all_products}
             src="/images/categories/all-products-tall.jpg"
             href="/store"
             className="md:hidden"
